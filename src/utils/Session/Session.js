@@ -102,6 +102,29 @@ export class Session {
   get sessionKey() {
     return this._sessionKey;
   }
+
+  /**
+   * Save the user to localstorage
+   */
+  saveUser() {
+    this.set(this.sessionKey, JSON.stringify(this._user));
+  }
+
+  /**
+   * Set the access token in localstorage
+   * @param {String} token - the access token
+   */
+  setAccessToken(token) {
+    this.set('accessToken', token);
+  }
+
+  /**
+   * Get the access token from localstorage
+   * @returns {String} - the access token
+   */
+  getAccessToken() {
+    return this.get('accessToken');
+  }
 }
 
 export default new Session();

@@ -12,6 +12,7 @@ import NotAuthorized from './NotAuthorized';
 import Health from './Health';
 
 import Session from '../utils/Session';
+import UsersVideos from './UsersVideos';
 
 const AuthRoute = ({ entry: { path, component, requiredRoles, subItems } }) => {
   const isUserLogged = Session.user.isLogged();
@@ -59,6 +60,7 @@ function Router() {
           component={() => <NewPassword />}
         />
         <Route exact path="/404" key="/404" component={() => <NoPage />} />
+        <Route exact path="/users-videos" key="/users-videos" component={() => <UsersVideos />} />
 
         <Layout>
           {MENU_ENTRIES.map((entry, index) => {

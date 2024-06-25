@@ -46,22 +46,33 @@ function LoginContainer() {
     }
   };
 
-  const handleSubmit = (values) => {
+  const handleSubmit = async (values) => {
     setErrorMsg(null);
     try {
-      const auth = AuthAPI.login(values);
+      const auth = await AuthAPI.login(values);
       const headersWithToken = { ...headers, Authorization: `Bearer ${auth.accessToken}` };
-      const userMainData = UsersAPI.fetchMe(headersWithToken);
-      const userData = UsersAPI.fetchContext(headersWithToken);
+
+      // Stockez le jeton d'accès dans la session et le stockage local
+      Session.setAccessToken(auth.accessToken);
+
+      const userMainData = await UsersAPI.fetchMe(headersWithToken);
+      const userData = await UsersAPI.fetchContext(headersWithToken);
       axios.defaults.headers.common = { ...headersWithToken, 'x-account-key': userData.accountKey };
       delete userData.password;
 
-      setUser({ ...userData, ...userMainData, ...auth });
+      // Créez un nouvel utilisateur combiné et stockez-le dans la session
+      const newUser = { ...userData, ...userMainData, ...auth };
+      setUser(newUser);
+      Session.user = newUser; // Cela appellera saveUser() automatiquement
       setInitialLanguage(userMainData?.meta?.language);
       redirectUser();
     } catch (error) {
-      setErrorMsg('Connection error');
+      setErrorMsg('Connection error', error);
     }
+  };
+
+  const handleBack = () => {
+    history.push('/forgotPassword');
   };
 
   useEffect(() => {
@@ -73,7 +84,7 @@ function LoginContainer() {
 
   return (
     <div>
-      <LoginView onSubmit={handleSubmit} errorMsg={errorMsg} />
+      <LoginView onSubmit={handleSubmit} errorMsg={errorMsg} handleBack={handleBack} />
     </div>
   );
 }
