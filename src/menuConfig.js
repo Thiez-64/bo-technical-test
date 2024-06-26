@@ -3,9 +3,14 @@ import WidgetsIcon from '@material-ui/icons/Widgets';
 import HomeIcon from '@material-ui/icons/Home';
 import BeachAccessIcon from '@material-ui/icons/BeachAccess';
 
+import PersonalVideoIcon from '@material-ui/icons/PersonalVideo';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+
 import NotAvailable from './Pages/NotAvailable';
 import Test from './Pages/Test';
 import Home from './Pages/Home';
+import Videos from './Pages/Videos/Videos.container';
+import Video from './Pages/Video';
 import { colors } from './muiColors';
 
 // import { ROLES } from './models/User/User.constants'; used to restrict menu access
@@ -45,11 +50,13 @@ const MENU_ENTRIES = [
 
     subItems: [
       {
+        icon: <BeachAccessIcon />,
         name: 'Create',
         path: '/new',
         component: () => <NotAvailable />,
       },
       {
+        icon: <BeachAccessIcon />,
         name: 'Edit',
         path: '/:newsTypeId/edit',
         component: () => <NotAvailable />,
@@ -62,6 +69,19 @@ const MENU_ENTRIES = [
     icon: <WidgetsIcon />,
     component: () => <Test />,
     skipDisplay: !['local', 'develop'].some((env) => env === nodeEnv),
+  },
+  {
+    name: 'videos',
+    path: '/videos',
+    icon: <PersonalVideoIcon />,
+    component: () => <Videos />,
+  },
+
+  {
+    name: 'video',
+    path: '/video/:id',
+    icon: <YouTubeIcon />,
+    component: () => <Video />,
   },
 ];
 

@@ -1,0 +1,19 @@
+.container {
+  margin: 20px 15%;
+}
+.card {
+  width: 400px;
+  height: 100px;
+  margin: 10px;
+  color: #ffff !important;
+}
+
+.menuIcon {
+  position: relative;
+  left: 345px;
+  top: 0px;
+  z-index: 0;
+  transform: rotate(15deg);
+  opacity: 0.4;
+  font-size: 70px;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-
+import PropTypes from 'prop-types';
 import { PrimaryButton } from '../../widgets/Buttons/Buttons';
 import RenderTextInput from '../../Renderers/RenderTextInput';
 import { loginImagePath, legalText } from '../../config';
@@ -51,3 +51,9 @@ function LoginView({ onSubmit, errorMsg, handleBack }) {
   );
 }
 export default LoginView;
+
+LoginView.propsType = {
+  onSubmit: PropTypes.func,
+  errorMsg: PropTypes.string,
+  handleBack: PropTypes.func,
+};
