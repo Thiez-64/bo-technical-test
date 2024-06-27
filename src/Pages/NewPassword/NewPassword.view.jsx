@@ -9,7 +9,7 @@ import { palette } from '../../muiTheme';
 import styles from './newPassword.module.scss';
 
 const backGroundStyle = loginImagePath
-  ? { backgroundImage: loginImagePath }
+  ? { backgroundImage: `url(${loginImagePath})` }
   : { backgroundColor: palette.primary.main };
 
 function NewPasswordView({ onSubmit, errorMsg, isRequested, handleBack }) {

@@ -14,7 +14,7 @@ function validateEmail(email) {
 }
 
 const backGroundStyle = loginImagePath
-  ? { backgroundImage: loginImagePath }
+  ? { backgroundImage: `url(${loginImagePath})` }
   : { backgroundColor: palette.primary.main };
 
 function ForgotPasswordView({ onSubmit, errorMsg, isRequested, handleBack }) {
