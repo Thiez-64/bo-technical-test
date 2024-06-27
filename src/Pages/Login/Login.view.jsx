@@ -9,9 +9,10 @@ import { palette } from '../../muiTheme';
 import styles from './login.module.scss';
 
 const backGroundStyle = loginImagePath
-  ? { backgroundImage: loginImagePath }
+  ? { backgroundImage: `url(${loginImagePath})` }
   : { backgroundColor: palette.primary.main };
 function LoginView({ onSubmit, errorMsg, handleBack }) {
+  console.log('backGroundStyle', backGroundStyle);
   const validate = (values) => {
     const errors = {};
     if (!values.username) {
